@@ -2122,4 +2122,160 @@ export default App;
 
 
 
+//////////////////////////////////////////////////////////////file upload//////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////serverfile.js////////////////////////////////////////
+
+const express=require('express')
+const mongoose=require('mongoose')
+const fileUpload = require('express-fileupload');
+const cors=require('cors')
+const app=express()
+
+const route=require('./routes/routefile')
+mongoose.connect('mongodb://localhost:27017/myfiledata')
+app.use(express.json())
+
+app.use(cors())
+app.use(fileUpload({
+    useTempFiles:true,
+    tempFileDir:'./../../client/public/uploads'
+}))
+
+app.use('/photo',route)
+
+app.listen(5000,()=>{
+    console.log('Server coonnected succesfuly')
+})
+
+
+
+//////////////////////////////////////////routefile.js///////////////////////////////////////////////
+
+const express=require('express')
+const router=express.Router();
+const model=require('../models/modelfile')
+
+
+router.post('/addphoto',async (req,res)=>{
+
+    if (!req.files) {
+        return res.status(500).send({ msg: "file is not found" })
+    }
+
+    const myFile = req.files.file;
+
+    // Use the mv() method to place the file somewhere on your server
+    myFile.mv(`${__dirname}/../../../client/public/uploads/${myFile.name}`, function (err) {
+        if (err) {
+            console.log(err)
+            return res.status(500).send({ msg: " eroor" });
+        }
+        return res.send({ file: myFile.name, path: `/public/uploads/${myFile.name}`, ty: myFile.type });
+    });
+    console.log(myFile.name);
+    const newdata=new model({
+        "images":myFile.name,        
+    })
+    newdata.save()
+})
+
+router.get('/getphotos',async(req,res)=>{
+    const data=await model.find()
+    res.send(data)
+})
+
+module.exports=router
+
+
+/////////////////////////////////modelfile.js/////////////////////////////////////////////
+
+const mongoose=require('mongoose')
+const myschema=mongoose.Schema({
+        images:{
+            type:String,
+            required:true,    
+        } 
+    })
+
+module.exports=mongoose.model('photosdata',myschema);
+
+
+/////////////////////client page///////////////////////////////
+
+import React,{useState,useEffect} from 'react'
+import axios from "axios";
+function Fileupload() {
+    const[dataa,setdataa]=useState([]);
+    const [uploadedFile, setUploadedFile] = useState({});
+    const [file, setFile] = useState("");
+  const [filename, setFilename] = useState("Choose File");
+  useEffect(()=>{
+    const getpolls=async ()=>{
+        let data=await axios.get('http://localhost:5000/photo/getphotos');
+        setdataa(data.data)
+    }
+    getpolls()
+},[])
+const dispphotos=dataa.map((d)=>{
+    return(
+        
+        <tr>
+            <td scope="row"><img
+              style={{ width: "100%" }}
+              src={"./uploads/"+d.images}
+              alt={uploadedFile.fileName}
+            />
+             </td>
+                          
+          </tr>
+       
+       
+    )
+})
+  const onChange = e => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
+  };
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("filename",file.name);
+    
+        try {
+          const res = await axios.post("http://localhost:5000/photo/addphoto", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            },           
+          });
+          const { fileName, filePath } = res.data;
+          setUploadedFile({ fileName, filePath });
+                  
+          
+        } catch (error) {
+          if (error.response.status === 500) {
+            console.log("succes")
+          } else {
+            console.log("error");
+          }
+        }
+      };
+  return (
+    <div><form 
+    id='uploadForm' 
+    encType="multipart/form-data" onSubmit={onSubmit}>
+        <input type="file" name="sampleFile" onChange={onChange} />
+        <input type='submit' value='Upload!'  />
+</form>	
+<table>
+    {dispphotos}
+</table>
+</div>
+  )
+}
+
+export default Fileupload
+
 
