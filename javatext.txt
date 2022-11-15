@@ -1,59 +1,8 @@
-
-
-/////////////////////////Questions////////////////////////////////////////
-
-1. Create a GUI application to perform CRUD operation on student table with student id, name, date of birth, address etc fields.
-
-2. a. Develop Servlet & HTML Page with FORM and display
-form data using servlet, if user confirms entered data it will store it in
-database upon confirmation. Read initialization parameters from deployment
-descriptor.
-
-b. Develop servlet and demonstrate sharing resources among
-them using servletContext.
-
-c. Develop servlet listener class to implement context and
-session listeners.
-
-d. Develop Servlet to demonstrate FILE upload, use getParts()
-method of Servlet 3.0.
-
-
-3. Develop #2 A using JSP.
-
-4. Develop JSP application to manage session management
-through login, member area and logout pages. Use session object to manage
-session. After login display all users in a tabular format. Add edit, delete
-and paging functions in table.
-
-5. Develop JSP, JavaBeans application to manage contacts.
-
-6. Develop #5 with JSTL/EL.
-
-7. Create SOAP based WebService for TempatureConversion to
-convert DegF to DegC and vice versa.
-
-8. Create #6 using RESTful Web Service.
-
-9. Create EntityBean & PU to manage Employee data, and
-using Entity Manager demonstrate persistence and CRUD operations.
-
-10. Create application to demonstrate JPQL
-11. Develop a shopping cart application for electronic products having at least five products 
-and ten categories. Display catalogue and allow user to add products and order.
-12. Admin site with login should be able to view orders of #11.
-13. Develop a basic application to demonstrate EJB with JSP.
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 ////////////////////////////////////////////////Q-1////////////////////////////////////
 
 --------->studentDetail.java
 
 SourcePackages>defaultpackage>studentDetail.java
-
 
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -67,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author SONU
+ * @author test
  */
 public class studentDetail extends javax.swing.JFrame {
 
@@ -232,8 +181,8 @@ public class studentDetail extends javax.swing.JFrame {
             String id = jTextid.getText();
             String name = jTextname.getText();
             String city = jTextcity.getText();
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/stack?zeroDateTimeBehavior=convertToNull","root","");
+            Class.forName("com..jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
             String sql = "insert into demo(name,city) VALUES ('"+jTextname.getText()+"','"+jTextcity.getText()+"')";
             Statement st = con.createStatement();
             st.execute(sql);
@@ -250,8 +199,8 @@ public class studentDetail extends javax.swing.JFrame {
             String id = jTextid.getText();
             String name = jTextname.getText();
             String city = jTextcity.getText();
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/stack?zeroDateTimeBehavior=convertToNull","root","");
+            Class.forName("com..jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
             String sql = " UPDATE demo SET name='"+name+"' ,city='"+city+"' WHERE id = '"+id+"' " ;
             Statement st = con.createStatement();
             st.execute(sql);
@@ -265,8 +214,8 @@ public class studentDetail extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             String id = jTextid.getText();
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/stack?zeroDateTimeBehavior=convertToNull","root","");
+            Class.forName("com..jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
             String sql = "  DELETE FROM demo WHERE id = '"+id+"'";
             Statement st = con.createStatement();
             st.execute(sql);
@@ -280,8 +229,8 @@ public class studentDetail extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
 
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/stack?zeroDateTimeBehavior=convertToNull","root","");
+            Class.forName("com..jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
             String sql = "select * from demo";
             Statement st = con.createStatement();
             ResultSet rs =  st.executeQuery(sql);
@@ -356,20 +305,9 @@ public class studentDetail extends javax.swing.JFrame {
 }
 
 
+/////////////////////////////////////Q-2///////////////////////////////////////
 
-
-
-
-
-//////////////////////////////////////////////////////////////////////
-
-Q-2-------------------------------------------------------
-
-
-a.---------------------------------------------------------
-
-
-----------------------------Index.html--------------------------
+--------->Index.html
 
 <!DOCTYPE html>
 <!--
@@ -416,7 +354,7 @@ and open the template in the editor.
 
 
 
---------------------------------shoowEmp.java------------------------------
+----------->shoowEmp.java
 
 
 
@@ -506,9 +444,8 @@ Connection con;
 }
 
 
+------------->web.xml
 
-
------------------------web.xml-----------------------------
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
@@ -521,11 +458,11 @@ Connection con;
     </servlet-mapping>
 	<init-param>
             <param-name>connection_class</param-name>
-            <param-value>com.mysql.jdbc.Driver</param-value>
+            <param-value>com..jdbc.Driver</param-value>
         </init-param>
 	<init-param>
             <param-name>connection_url</param-name>
-            <param-value>jdbc:mysql://localhost:3306/stack?zeroDateTimeBehavior=convertToNull</param-value>
+            <param-value>jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull</param-value>
         </init-param>
 		<init-param>
 			<param-name>connection_uname</param-name>
@@ -540,7 +477,7 @@ Connection con;
 
 
 
-------------------------insert.java----------------------------
+------------>insert.java
 
 
 import java.io.IOException;
@@ -554,7 +491,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author SONU
+ * @author test
  */
 @WebServlet(urlPatterns = {"/insert"})
 public class insert extends HttpServlet {
@@ -642,17 +579,12 @@ public class insert extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
 
-             
-/////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////Q-3///////////////////////////////////////////
 
-Q-3----------------------------------------------------------------
-
-
------------------------------------Insertform.jsp------------------------------
+------->Insertform.jsp
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -691,7 +623,7 @@ Q-3----------------------------------------------------------------
 </html>
 
 
---------------------------------------confirm.jsp---------------------------------------------------
+--------->confirm.jsp
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
@@ -730,7 +662,7 @@ Q-3----------------------------------------------------------------
 </html>
 
 
----------------------------------insert.jsp----------------------------------------
+------------->insert.jsp
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -756,8 +688,8 @@ Q-3----------------------------------------------------------------
             PreparedStatement pst;
             ResultSet rs;
 
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/stack?zeroDateTimeBehavior=convertToNull","root","");
+            Class.forName(config.getParameter("Connection-url"));
+            con = DriverManager.getConnection(config.getParameter("Connection-string"),config.getParameter("Connection-uname"),"");
             String sql = "insert into tbl_register (name,city,phone)values('"+name+"','"+city+"','"+phone+"')";
             Statement st = con.createStatement();
             st.execute(sql);
@@ -779,568 +711,491 @@ Q-3----------------------------------------------------------------
 
 --------------------------------web.xml-----------------------------------------
 
-//set init params like Q-2 and read in jsp page by -> config.getInitParameter("param-name");
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>Insert</servlet-name>
+        <servlet-class>Insert</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Insert</servlet-name>
+        <url-pattern>/Insert</url-pattern>
+    </servlet-mapping>
+	<init-param>
+            <param-name>connection-url</param-name>
+            <param-value>com..jdbc.Driver</param-value>
+        </init-param>
+	<init-param>
+            <param-name>connection-String</param-name>
+            <param-value>jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull</param-value>
+        </init-param>
+		<init-param>
+			<param-name>connection-uname</param-name>
+			<param-value>root</param-value>
+		</init-param>
+    <session-config
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
 
 
+//////////////////////////////////////Q-4////////////////////////////////////////
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Q-4----------------------------------------------------------------------------------------
-
--------------------------------------register.jsp------------------------------------------------
-
-
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1 align = "center">Register Page</h1>
-        <div class = "container">
-        <form  method="POST" action="" >
-                    <div class="mb-3">
-                        <label class="form-label">Student Name</label>
-                        <input type="text" class="form-control" placeholder="Student Name" name="name"  required >
-                     </div>
-                        
-                    <div class="mb-3">
-                        <label class="form-label">City Name</label>
-                        <input type="text" class="form-control" placeholder="Enter City" name="city"  required >
-                     </div>
-                        
-                     <div class="mb-3">
-                        <label class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" placeholder="Phone Number" name="phone" required >
-                     </div>
-                     <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" class="form-control" placeholder="Password"  name="password" required >
-                     </div>                        
-                     <div class="mb-3">
-                         <input type="submit" id="submit" value="Register " name="submit" class="btn btn-info">                        
-                     </div>      
-                </form>
-            </div>
-        <%
-        if(request.getParameter("submit")!=null){
-            String name = request.getParameter("name");
-            String city = request.getParameter("city");
-            String phone = request.getParameter("phone");
-            String password = request.getParameter("password");
-            
-            Connection con;
-            ResultSet rs;
-            try{
-                Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-                String sql = "insert into tbl_register(name,city,phone,password) values('"+name+"','"+city+"','"+phone+"','"+password+"')";
-                Statement st = con.createStatement();
-                st.execute(sql);
-                
-            }catch(Exception ex){
-                System.out.println(ex);
-            }
-            %>
-            
-            <script>
-                alert('Added Successfully');
-                window.location.href = 'login.jsp';
-            </script>
-            
-            
-       <%     
-        }    
-      %>
-        
-        
-    </body>
-</html>
-
-
-
-----------------------------login.jsp----------------------------------------------------
-
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="header.jsp" %>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1 align = "center">Login Page</h1>
-        <div class = "container">
-        <form  method="POST" action="" >
-                    <div class="mb-3">
-                        <label class="form-label">User Name</label>
-                        <input type="text" class="form-control" placeholder="Student Name" name="name"  required >
-                     </div>
-                     <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" class="form-control" placeholder ="password" name="password" required >
-                     </div>                        
-                     <div class="mb-3">
-                         <input type="submit" value="Login " name="login" class="btn btn-info">                        
-                     </div>      
-            <a href = "register.jsp">Not Register!!</a>
-                </form>
-            </div>
-        <%
-          if(request.getParameter("login")!=null){  
-          String sname = request.getParameter("name");
-          String spassword = request.getParameter("password");
-          String usertype1 = "user";
-          String usertype2 = "admin";
-          Connection con;
-          Statement st;
-          //session.setAttribute("user",sname);
-           
-          try{
-               Class.forName("com.mysql.jdbc.Driver");
-               con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-               String sql = "select name,password,usertype from tbl_register";
-               st = con.createStatement();
-               ResultSet rs = st.executeQuery(sql);
-               while(rs.next()){
-                   String name = rs.getString(1);
-                   String password = rs.getString(2);
-                   String usertype = rs.getString(3);
-                   
-                   if(sname.equals(name) && spassword.equals(password) && usertype1.equals(usertype) ){
-                       session.setAttribute("user",sname);
-                       response.sendRedirect("Userpage.jsp");
-                   }else if(sname.equals(name) && spassword.equals(password) && usertype2.equals(usertype)){
-                       session.setAttribute("user",sname);
-                       response.sendRedirect("admin.jsp");
-                   }else{
-                       out.print("<script>alert('Wrong Creditials');</script>");
-                   }
-               }
-           }catch(Exception ex){
-               System.out.println(ex);
-           }
-          }
-        %>
-    </body>
-</html>
-
-
-
--------------------------------------update.jsp-------------------------------------------------------------------
-
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        
-        <%
-           if(request.getParameter("update")!=null)
-           {
-               
-           String id = request.getParameter("id");
-           String name = request.getParameter("name");
-           String city = request.getParameter("city");
-           String phone = request.getParameter("phone");
-          Connection con;
-          ResultSet rs;
-          Class.forName("com.mysql.jdbc.Driver");
-          con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-          String sql= "update tbl_register set name = '"+name+"',city = '"+city+"',phone = '"+phone+"' where id = '"+id+"'";
-          Statement st = con.createStatement();
-          st.execute(sql);
-          response.sendRedirect("admin.jsp");
-   
-        }
-        %>
-        
-        
-        <%
-          String id = request.getParameter("id");
-          Connection con;
-          ResultSet rs;
-          Class.forName("com.mysql.jdbc.Driver");
-          con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-          String sql = "select * from tbl_register where id = '"+id+"' ";
-          Statement st = con.createStatement();
-          rs = st.executeQuery(sql);
-          while(rs.next()){ %> 
-                
-   
-        <h1 align = "center">Update Page</h1>
-        <div class = "container">
-        <form  method="POST" action="" >
-                    <div class="mb-3">
-                        <label class="form-label">Student Name</label>
-                        <input type="text" class="form-control"  name="name"  value ="<%= rs.getString("name") %> " required >
-                     </div>
-                        
-                    <div class="mb-3">
-                        <label class="form-label">City Name</label>
-                        <input type="text" class="form-control" value ="<%= rs.getString("city") %> " name="city"  required >
-                     </div>
-                        
-                     <div class="mb-3">
-                        <label class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" value ="<%= rs.getString("phone") %> " name="phone" required >
-                     </div>    <% } %>                   
-                     <div class="mb-3">
-                         <input type="submit" value="Update " name="update" class="btn btn-info">                        
-                     </div>      
-                </form>
-            </div>
-                     
-      
-    </body>
-</html>
-
-
------------------------------------------adminhome.jsp---------------------------------------------
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="AdminHeader.jsp" %>
-<!DOCTYPE html>
-<html>
-    <head>
-  <script type="text/javascript">
-          
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Admin Page</title>
-    </head>
-    <body>
-       
-      <h1 align = "center" class = "my-4">Our Users</h1>
-      <div class="container my-4">
-      <table class="table display" id="grid">
-  <thead>
-    <tr>
-      <th scope="col">S.no</th>
-      <th scope="col">id</th>
-      <th scope="col">Name</th>
-      <th scope="col">City</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col" colspan="2">Operation</th>
-    </tr>
-  </thead>
-  <tbody>
-
-   
-    
-        <%
-            Connection con;
-            ResultSet rs;
-            Statement st;
-            int sno=1;
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-            String sql= "select * from tbl_register where usertype = 'user' ";
-            st = con.createStatement(); 
-            rs = st.executeQuery(sql);
-            while(rs.next()){
-                String id = rs.getString("id");
-                %>
-
-                <tr>
-                    <td><%=  sno++  %></td>
-                    <td><%= rs.getString("id")  %></td>
-                    <td><%= rs.getString("name")  %></td>
-                    <td><%= rs.getString("city")  %></td>
-                    <td><%= rs.getString("phone")  %></td>
-                    <td><a href="update.jsp?id=<%=id%>" class="btn btn-outline-success">Edit</a>
-                        <a href="delete.jsp?id=<%=id%>" class="btn btn-outline-danger" >Delete</a></td>
-                    
-                        
-                </tr>
-                
-                <%
-            }
-          %>  
-     
-  </tbody>
-      </table>
-         
-         
-       
-    </body>
-</html>
-
-
-
------------------------------------------adminnav.jsp----------------------------------------------------------
+------>Action.jsp
 
 <%-- 
-    Document   : AdminHeader
-    Created on : Oct 2, 2022, 10:36:31 AM
-    Author     : SONU
+    Document   : ContactAction
+    Created on : 26 Oct, 2022, 9:34:39 AM
+    Author     : test
 --%>
-<% String sname=(String)session.getAttribute("user"); %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-         <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">DashBoard</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="admin.jsp">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="category.jsp">Category</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="admin.jsp">Users</a>
-        </li>
-
-         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="login.jsp">Logout</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <button class="btn btn-outline-success" type="submit">Hello <%= sname %> </button>
-      </form>
-    </div>
-  </div>
-</nav>
-    </body>
-</html>
-
-
-
--------------------------------------delete.jsp-----------------------------------
-
-
 
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+
+    
+    String submit = request.getParameter("btnSubmit");
+    
+    if(submit.equals("Login")){
+        Boolean isLogin = false;
+        String email = request.getParameter("txtEmail");
+        String pwd = request.getParameter("txtPwd");
+        
+        Class.forName("com..jdbc.Driver");
+        Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery("select * from user");
+        while(rs.next()){
+            if(email.equals(rs.getString("email")) && pwd.equals(rs.getString("password"))){
+                HttpSession mysession = request.getSession();
+                mysession.setAttribute("email", email);
+                mysession.setAttribute("name", rs.getString("username"));
+                mysession.setAttribute("isLogin", "true");
+                isLogin = true;
+            }
+        }
+        if(isLogin == true){
+            response.sendRedirect("Home.jsp");
+        }
+        else{
+            response.sendRedirect("Login.jsp?inValidLogin='true'");
+        }
+    }
+    
+    if(submit.equals("Add")){
+        String name = request.getParameter("txtName");
+        String email = request.getParameter("txtEmail");
+        String pwd = request.getParameter("txtPwd");
+        
+        Class.forName("com..jdbc.Driver");
+        Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+        Statement st = cn.createStatement();
+        int ans = st.executeUpdate("insert into user(username,email,password) values('"+name+"','"+email+"','"+pwd+"')");
+        if(ans >= 1){
+            System.out.print("<script>alert('Inserted Sucessfully');</script>");
+        }
+        else{
+            System.out.print("<script>alert('Error in Insertion');</script>");
+        }
+        response.sendRedirect("Home.jsp");
+    }
+    
+    if(submit.equals("Delete")){
+        
+        int id = Integer.parseInt(request.getParameter("txtId"));
+        Class.forName("com..jdbc.Driver");
+        Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+        Statement st = cn.createStatement();
+        int ans = st.executeUpdate("delete from user where uid = "+id);
+        if(ans >= 1){
+            System.out.print("<script>alert('Deleted Sucessfully');</script>");
+        }
+        else{
+            System.out.print("<script>alert('Error in Deletion');</script>");
+        }
+        response.sendRedirect("Home.jsp");
+    }
+
+    if(submit.equals("Update")){
+        int id = Integer.parseInt(request.getParameter("txtId"));
+        String name = request.getParameter("txtName");
+        String email = request.getParameter("txtEmail");
+        String pwd = request.getParameter("txtPwd");
+        
+        Class.forName("com..jdbc.Driver");
+        Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+        Statement st = cn.createStatement();
+        int ans = st.executeUpdate("update user set username = '"+name+"' ,email = '"+email+"' ,password = '"+pwd+"' where uid = "+id);
+        if(ans >= 1){
+            System.out.print("<script>alert('Updated Sucessfully');</script>");
+        }
+        else{
+            System.out.print("<script>alert('Error in Updation');</script>");
+        }
+        
+        response.sendRedirect("Home.jsp");
+    }
+%>
+
+------>Add.jsp
+
+<%-- 
+    Document   : Add
+    Created on : 1 Nov, 2022, 12:05:03 PM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Delete Page</title>
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
         <%
-           String id = request.getParameter("id");
-          Connection con;
-          ResultSet rs;
-          Class.forName("com.mysql.jdbc.Driver");
-          con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-          String sql= "delete from tbl_register where id = '"+id+"'";
-          Statement st = con.createStatement();
-          st.execute(sql);
-          response.sendRedirect("admin.jsp");
-         %>
-         <script>alert("Record Delete");</script>
-         
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
+            }
+            if(isLogin == true){
+        %>
+        <div class="container-fluid">
+        
+            <div class="row">
+                <h1 class="title">Add User</h1>
+                
+                <a href="Home.jsp"><button class="btn btn-primary">View All User</button></a>
+                <br/><br/>
+                <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="Action.jsp" method="post" class="formRow">
+                        <div>
+                        <label for="name" class="form-label">Name : </label>
+                        <input type="text" name="txtName" id="name" class="form-control" placeholder="Name"/>
+                        </div>
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="password" class="form-label">Password : </label>
+                        <input type="password" name="txtPwd" id="password" class="form-control" placeholder="Password"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="insert" value="Add" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+                </div>
+                <div class="col-md-3 "></div>
+            </div>
+        </div>
+        <%
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+        %>
     </body>
 </html>
 
+------>Edit.jsp
 
-
-
--------------------------------------insert.jsp---------------------------------------
-
+<%-- 
+    Document   : Edit
+    Created on : 1 Nov, 2022, 12:05:10 PM
+    Author     : test
+--%>
 
 <%@page import="java.sql.*"%>
-
-<%@include file="AdminHeader.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Categroy</title>
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
-               <div class = "container my-5">
-        <form  method="POST" action="" enctype ="multipart/form-data" >
-                    <div class="mb-3">
-                        <label class="form-label">Category Name</label>
-                        <select class="form-select" name = "cname">
-                                <option selected>Open this select menu</option>
-                                <option value="tv">Television</option>
-                                <option value="laptop">Laptop and Computers</option>
-                                <option value="mobile">Mobiles and phone</option>
-                              </select>
-                     </div>
-                        
-                    <div class="mb-3">
-                        <label class="form-label">Product Name</label>
-                        <input type="text" class="form-control" placeholder="Product name" name="pname"  required >
-                     </div>
-                        
-                     <div class="mb-3">
-                        <label class="form-label">Product Price</label>
-                        <input type="text" class="form-control" placeholder="Product Price" name="Price" required >
-                     </div>
-                     <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <input type="text" class="form-control" placeholder="Enter Description"  name="descp" required >
-                     </div>  
-                        <div class="mb-3">
-                        <label class="form-label">Product Image</label>
-                        <input type="file" class="form-control"  name="image" required >
-                     </div>  
-                     <div class="mb-3">
-                         <input type="submit" value="upload" name="upload" class="btn btn-info">                        
-                     </div>      
-                </form>
-            </div>
         
-                <%
-        if(request.getParameter("upload")!=null){
-            String cname = request.getParameter("came");
-            String pname = request.getParameter("pame");
-            String price = request.getParameter("price");
-            String descp = request.getParameter("descp");
-            String image = request.getParameter("image");
+        <%
             
-            Connection con;
-            ResultSet rs;
-            try{
-                Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-                String sql = "insert into tbl_category(cname,pname,price,descp,image) values('"+cname+"','"+pname+"','"+price+"','"+descp+"','"+image+"')";
-                Statement st = con.createStatement();
-                st.execute(sql);
-                
-            }catch(Exception ex){
-                System.out.println(ex);
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
             }
-            %>
-            
-            <script>
-                alert('Added Successfully');
-                window.location.href = 'category.jsp';
-            </script>
-            
-            
-       <%     
-        }    
-      %>
+            if(isLogin == true){
         
+                int id = Integer.parseInt(request.getParameter("txtId"));
+                String name="",email="",pwd="";
+                Class.forName("com..jdbc.Driver");
+                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                Statement st = cn.createStatement();
+                ResultSet rs  = st.executeQuery("select * from user where uid = "+id);
+                while(rs.next()){
+                    name = rs.getString("username");
+                    email = rs.getString("email");
+                    pwd = rs.getString("password");
+                }
+        
+        %>
+        <div class="container-fluid">
+        
+            <div class="row">
+                <h1 class="title">Edit User</h1>
+                
+                <a href="Home.jsp"><button class="btn btn-primary">View All User</button></a>
+                <br/><br/>
+                <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="Action.jsp" method="post" class="formRow">
+                        <input type="hidden" name="txtId" value="<%= id %>"/><br><br>
+                        <div>
+                        <label for="name" class="form-label">Name : </label>
+                        <input type="text" name="txtName" value="<%= name %>" id="name" class="form-control" placeholder="Name"/>
+                        </div>
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" value="<%= email %>" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="password" class="form-label">Password : </label>
+                        <input type="password" name="txtPwd" value="<%= pwd %>" id="password" class="form-control" placeholder="Password"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="submit" value="Update" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+                </div>
+                <div class="col-md-3 "></div>
+            </div>
+        </div>
+            
+        <%
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+        %>
     </body>
 </html>
 
+------>Home.jsp
 
+<%-- 
+    Document   : Home
+    Created on : 1 Nov, 2022, 11:52:51 AM
+    Author     : test
+--%>
 
--------------------------------userhome.jsp---------------------------------------------
-
-
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% String sname=(String)session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+                
+        <% 
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
+            }
+            if(isLogin == true){
+                
+            
+                Class.forName("com..jdbc.Driver");
+                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery("select * from user");
+
+        %>
+                
+        <div class="container-fluid">
+            <div class="row">
+                <h1 class="title">All Users</h1>
+                <h3 class="title">Welcome <%= mysession.getAttribute("name")%></h3>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <td class="head">ID</td>
+                                <td class="head">Name</td>
+                                <td class="head">Email</td>
+                                <td class="head">Password</td>
+                                <td class="head" colspan="2">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            while(rs.next()){
+                            %>
+                            <tr>
+                                <td><%= rs.getInt("uid")%></td>
+                                <td><%= rs.getString("username")%></td>
+                                <td><%= rs.getString("email")%></td>
+                                <td><%= rs.getString("password")%></td>
+                                <td>
+                                    <form action="Edit.jsp" method="POST">
+                                        <input type="hidden" value="<%= rs.getInt("uid")%>" name="txtId"/>
+                                        <button type="submit" value="Edit" name="btnEdit" class="btn btn-warning">Edit</button>
+                                    </form> 
+                                </td>
+                                <td>
+                                    <form action="Action.jsp" method="POST">
+                                        <input type="hidden" value="<%= rs.getInt("uid")%>" name="txtId"/>
+                                        <button type="submit" value="Delete" name="btnSubmit" class="btn btn-danger">Delete</button>
+                                    </form> 
+                                </td>
+                            </tr>
+
+                            <%
+                            }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1">
+                <a href="Add.jsp"><button class="btn btn-primary">Add New User</button></a>
+                <br/><br/>
+                <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                </div>
+            </div>
+            <%
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+            %>
+        </div>
+    </body>
+</html>
+
+------>Login.jsp
+
+<%-- 
+    Document   : Login
+    Created on : 28 Oct, 2022, 10:23:44 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+   
+    </head>
+    <body>
+ 
+        
+        <div class="container-fluid">
+        
+            <div class="row">
+                <h1 class="title">Login</h1>
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="Action.jsp" method="post" class="formRow">
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="password" class="form-label">Password : </label>
+                        <input type="password" name="txtPwd" id="password" class="form-control" placeholder="Password"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+                        <input type="submit" name="btnSubmit" id="login" value="Login" class="btn btn-success btn-small" style="margin:0"/>                      
+                   </form>  
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+------>Logout.jsp
+
+<%-- 
+    Document   : Logout
+    Created on : 1 Nov, 2022, 1:11:27 PM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">UserPage</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="login.jsp">Logout</a>
-        </li>
-        
-      </ul>
-      <form class="d-flex" role="search">
-        <button class="btn btn-outline-success" type="submit">Hello <%= sname  %></button>
-      </form>
-    </div>
-  </div>
-</nav>
-      
+        <h1>Logout</h1>
+        <%
+            HttpSession mysession = request.getSession();
+            mysession.invalidate();
+            response.sendRedirect("Login.jsp");
+        %>
     </body>
 </html>
 
 
---------------------------------logout.jsp----------------------------
 
-session.invalidate();
+//////////////////////////////////////////////Q-5////////////////////////////////////////////////////
 
+----->Bean/Contactdetail.java
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+package Beans;
 
+import java.beans.*;
+import java.io.Serializable;
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Q-5------------------------------------------------------------------------------
-
-
-------------------------------------------------Bean-------------------------------
------------------------------Mycontact.java-------------------------------
-
-package Bean;
-
-import java.sql.*;
-
-public class Mycontact {
-       
-    public Mycontact() {
-       
-    }
+/**
+ *
+ * @author test
+ */
+public class ContactDetail implements Serializable {
+    
+    private int id;
     
     private String name;
-    private String number;
+
+    private String mobile;
+
     private String email;
-
-    public String getName() {
-        return name;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-
+    
     public String getEmail() {
         return email;
     }
@@ -1349,410 +1204,773 @@ public class Mycontact {
         this.email = email;
     }
 
-    public void insert()
-    {
-         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-            String sql = "insert into tbl_bean(name,number,email) values('"+name+"','"+number+"','"+email+"')";
-            Statement st = con.createStatement();
-            st.execute(sql);
-            st.close();         
-         }catch(Exception ex){
-            System.out.println(ex);
-        }
-    }    
-}
+    public String getMobile() {
+        return mobile;
+    }
 
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-
----------------------------------------addcontact.jsp---------------------------------------
-
-
-<%@ page language="java" import="java.sql.*;" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Contact Page</title>
-    </head>
-    <body>
-        <h1 class="text-center my-3">Add Contact</h1>
-        <div class="container my-2">
-            <form method="post" action=""> 
-            <div class="mb-3">
-              <label>Name</label>
-              <input type="text" class="form-control" name="name">
-            </div>
-            <div class="mb-3">
-              <label>Email</label>
-              <input type="email" class="form-control" name="email">
-            </div>
-            <div class="mb-3">
-              <label>Contact Number</label>
-              <input type="text" class="form-control" name="number">
-            </div>
-            <input type="submit" class="btn btn-outline-danger" name="add" value="ADD">
-            <jsp:useBean id="sample" class="Bean.Mycontact" scope="page">
-                <jsp:setProperty  name="sample" property="*"/>
-            </jsp:useBean>
-            <% sample.insert(); %>
-       
-          </form>
-        </div>
-    </body>
-</html>
-
-
----------------------------------------contactsdisp.jsp--------------------------------------
-
-<%@ page language="java" import="java.sql.*;" %>
-
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Java Beans</title>
-    </head>
-    <body>
-         <%
-            String id = request.getParameter("id");
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-            String sql1 = "delete from tbl_bean where id = '"+id+"'";
-            Statement st1 = con1.createStatement();
-            st1.execute(sql1);
-         %>
-         
-        <h1 class="text-center my-3">Our Contact</h1>
-        <div class="container"><a href = "addcontact.jsp" class="btn btn-outline-info">Add Contact</a></div>
-        <jsp:useBean id="bean" class="Bean.Mycontact">
-            <div class="container my-3">
-                <table class="table">
-  <thead class="bg-dark text-white">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Contact</th>
-      <th colspan="2">Edit</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-       <%
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull","root","");
-            String sql = "select * from tbl_bean";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while(rs.next()){
-                %>
-    <tr>
-
-      <td><jsp:setProperty name="bean" property="name" value="<%= rs.getString("name")  %>" />
-          <jsp:getProperty name="bean" property = "name" /></td>
-      <td><jsp:setProperty name="bean" property="email" value="<%= rs.getString("email")  %>" />
-          <jsp:getProperty name="bean" property = "email" /></td>
-      <td><jsp:setProperty name="bean" property="number" value="<%= rs.getString("number")  %>" />
-          <jsp:getProperty name="bean" property = "number" /></td>
-      <td><a href="contactsdisp.jsp?id=<%= rs.getString("id")%>" class="btn btn-outline-danger">Delete</a></td>
-      
-           </tr>
-           
-                <%
-                    }
-                %>
-                </jsp:useBean>
-  </tbody>
-</table>
-            </div>
-        
-       
-    
-    </body>
-</html>
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Q-6------------------------------------------------------------------------
-
-
--------------------------------------------------------add.jsp-----------------------------------------------
-
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1 class="text-center my-3">Add Contact</h1>
-        <div class="container my-2">
-            <form method="post" action=""> 
-            <div class="mb-3">
-              <label>Name</label>
-              <input type="text" class="form-control" name="name">
-            </div>
-            <div class="mb-3">
-              <label>Email</label>
-              <input type="email" class="form-control" name="email">
-            </div>
-            <div class="mb-3">
-              <label>Contact Number</label>
-              <input type="text" class="form-control" name="number">
-            </div>
-            <input type="submit" class="btn btn-outline-danger" name="add" value="ADD">
-          </form>
-        </div>
-          
-          <c:if test="${param.add != null}">
-          <sql:setDataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull" user="root" password="" var="ds"></sql:setDataSource>
-          <sql:update dataSource="${ds}" var = "rs">
-          insert into tbl_bean(name,email,number) values(?,?,?);
-          <sql:param value="${param.name}"/>
-          <sql:param value="${param.email}"/>
-          <sql:param value="${param.number}"/>
-          </sql:update>
-          <c:if test="${rs>0}">
-              <script>alert('added Successfully');</script>
-              <c:redirect url="contact.jsp"></c:redirect>
-
-          </c:if>
-          </c:if>
-
-    </body>
-</html>
-
-
-----------------------------------------------delete.jsp-----------------------------------------------------
-
-<%-- 
-    Document   : delete
-    Created on : Nov 1, 2022, 6:26:54 PM
-    Author     : SONU
---%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-
-          <sql:setDataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull" user="root" password="" var="ds"></sql:setDataSource>
-     <sql:update dataSource="${ds}" var="rs">
-         delete from tbl_bean where id = ?;
-     <sql:param value="${param.id}" />   
-     </sql:update>
-
-         <c:if test="${rs>0}">
-             <c:redirect url="contact.jsp">
-                 <c:param name="sm" value="Deleted Succssfully"/>
-             </c:redirect>
-         </c:if>
-       
-    </body>
-</html>
-
-  
-
----------------------------------------------------contactsdisp.jsp-------------------------------------------------
-
-<%-- 
-    Document   : contact
-    Created on : Nov 1, 2022, 5:42:21 PM
-    Author     : SONU
---%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Contact Page</title>
-    </head>
-    <body>
-        <h1 class="text-center my-3">Our Contact</h1>
-        <div class="container"><a href = "add.jsp" class="btn btn-outline-info">Add Contact</a></div>
-            <div class="container my-3">
-  <sql:setDataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/javadb?zeroDateTimeBehavior=convertToNull" user="root" password="" var="ds"></sql:setDataSource>
-  <sql:query dataSource="${ds}" var = "rs">select * from tbl_bean;</sql:query>
-  
- <table class="table">
-     
-  <thead class="bg-dark text-white">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Contact</th>
-      <th scope="col">Operation</th>
-    </tr>
-  </thead>
-  <tbody>
-  <c:forEach items="${rs.rows}" var="row">
-       <tr>
-           <td><c:out value="${row.name}"></c:out></td>
-           <td><c:out value="${row.email}"></c:out></td>
-           <td><c:out value="${row.number}"></c:out></td>
-           <td><a  href="delete.jsp?id=${row.id}"class="btn btn-outline-danger">Delete</a></td>
-      </tr>
-  </c:forEach>
-  </tbody>
    
-</table>
-    </div>
-
-    </body>
-</html>
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-Q-7----------------------------------------------------------------------------------------------
-
-----------------------------------API-----------------------------------------------------------------
-
----------------------------------SOAP Project---------------------------------------------------------
-
-com>convretor>TempConv.java
-
-------------------------------------------TempConv.java-------------------------------------------------------
-
-
-package com.convertor;
-
-import javax.jws.WebService;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-
-
-@WebService(serviceName = "TempConv")
-public class TempConv {
+    public String getName() {
+        return name;
+    }
 
   
-    @WebMethod(operationName = "FahtoCel")
-    public float FahtoCel(@WebParam(name = "temp") float temp) {
-        
-        float result = (temp-32)*5/9;
-        return result;  
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    @WebMethod(operationName = "celtoferh")
-    public float celtoferh(@WebParam(name = "temp") float temp) {
-       
-         float result = temp*9/5+32;
-        return result;
+   
+    public int getId() {
+        return id;
     }
-    
-    
+
+   
+    public void setId(int id) {
+        this.id = id ;
+    }
+
 }
 
 
-------------------------------------------Client side-------------------------------------------
+------>Bean/ContactManager.java
 
---------------------------------Other project------------------------------------
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-----------------------------------------index.html--------------------------------------------------------
+package Beans;
 
+import java.beans.*;
+import java.io.Serializable;
+import java.sql.*;
+import java.sql.DriverManager;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author test
+ */
+public class MyAllContact implements Serializable {
+
+    private final ArrayList<ContactDetail> myContact;
+    public MyAllContact() {
+        myContact = new ArrayList();
+    }
+    
+    public void addContact(ContactDetail c){
+        
+        try{
+            
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            java.sql.Statement st = cn.createStatement();
+             
+            st.execute("insert into contact(name,mobile,email) values('"+c.getName()+"','"+c.getMobile()+"','"+c.getEmail()+"')");
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println(e.toString());
+        }
+        catch(SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+    
+    public void removeContact(ContactDetail c){
+        try{
+            
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            java.sql.Statement st = cn.createStatement();
+             
+            st.execute("delete from contact where id = "+c.getId());
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println(e.toString());
+        }
+        catch(SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+    
+    public void updateContact(ContactDetail c){
+        try{
+            
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            java.sql.Statement st = cn.createStatement();
+             
+            int ans = st.executeUpdate("update contact set name = '"+c.getName()+"', email = '"+c.getEmail()+"', mobile = '"+c.getMobile()+"' where id = "+c.getId());
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println(e.toString());
+        }
+        catch(SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+    
+    public void clearContact(){
+        try{
+            
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            java.sql.Statement st = cn.createStatement();
+             
+            st.execute("delete from contact");
+            
+        }
+        catch(ClassNotFoundException e){
+            System.out.println(e.toString());
+        }
+        catch(SQLException e){
+            System.out.println(e.toString());
+        }
+    }
+    
+    public ArrayList<ContactDetail> getAllContacts(){
+        myContact.clear();
+        try{
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            java.sql.Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("select * from contact");
+            while(rs.next()){
+                ContactDetail c = new ContactDetail();
+                c.setId(rs.getInt("id"));
+                c.setName(rs.getString("name"));
+                c.setMobile(rs.getString("mobile"));
+                c.setEmail(rs.getString("email"));
+                
+                myContact.add(c);
+            }
+        }
+        catch(ClassNotFoundException e){
+            System.out.println(e.toString());
+        }
+        catch(SQLException e){
+            System.out.println(e.toString());
+        }
+        return myContact;
+    }
+    
+    public ContactDetail getOneContact(int id){
+        ContactDetail c = null;
+        try{
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            java.sql.Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("select * from contact where id = "+id);
+            while(rs.next()){
+                c = new ContactDetail();
+                c.setId(rs.getInt("id"));
+                c.setName(rs.getString("name"));
+                c.setMobile(rs.getString("mobile"));
+                c.setEmail(rs.getString("email"));
+            }
+        }
+        catch(ClassNotFoundException e){
+            System.out.println(e.toString());
+        }
+        catch(SQLException e){
+            System.out.println(e.toString());
+        }
+        return c;
+    }
+}
+
+
+------>AddContact.jsp
+
+<%-- 
+    Document   : AddContact
+    Created on : 26 Oct, 2022, 9:31:28 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
     <head>
-        
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     </head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
     <body>
-        <h1 class="text-center">Temprature Convertor</h1>
-        <form action="Temprature" method="POST">
-            <div class="container my-3">
-                <div class="mb-3">
-                <label class="form-label">Enter</label>
-                <input type="text" class="form-control" name="txt1" >
-              </div>
-                <input type="submit" class="btn btn-outline-dark" value="Fahrenite" name="b1">
-                <input type="submit" class="btn btn-outline-danger" value="celcius" name="b1">
+        <div class="container-fluid">
+        
+            <div class="row center">
+                <h1 class="title">Add Contact</h1>
+                
+                <a href="AllContact.jsp"><button class="btn btn-primary">View All Contacts</button></a>
+                
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="ContactAction.jsp" method="post" class="formRow">
+                        <div>
+                        <label for="name" class="form-label">Name : </label>
+                        <input type="text" name="txtName" id="name" class="form-control" placeholder="Name"/>
+                        </div>
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="mobile" class="form-label">Mobile : </label>
+                        <input type="text" name="txtMobile" id="mobile" class="form-control" placeholder="Mobile"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="insert" value="Add" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+                </div>
+                <div class="col-md-3 "></div>
             </div>
-            
-        </form>
+        </div>
+    </body>
+</html>
+
+------>DispContact.jsp
+
+<%-- 
+    Document   : DispContact
+    Created on : 26 Oct, 2022, 9:16:36 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="allcontact" class="Beans.MyAllContact" scope="session"/>
+<%@page import="Beans.*" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <h1 class="title">All Contacts</h1>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <th class="head">ID</th>
+                                <th class="head">Name</th>
+                                <th class="head">Mobile</th>
+                                <th class="head">Email</th>
+                                <th class="head" colspan="2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <%
+                                for(ContactDetail c : allcontact.getAllContacts()){
+                            %>
+                            <tr>
+                                <td><%= c.getId() %></td>
+                                <td><%= c.getName() %></td>
+                                <td><%= c.getMobile() %></td>
+                                <td><%= c.getEmail() %></td>
+                                <td>
+                                    <form action="EditContact.jsp" method="POST">
+                                        <input type="hidden" value="<%= c.getId() %>" name="txtId"/>
+                                        <button type="submit" value="Edit" name="btnEdit" class="btn btn-warning">Edit</button>
+                                    </form> 
+                                </td>
+                                <td>
+                                    <form action="ContactAction.jsp" method="POST">
+                                        <input type="hidden" value="<%= c.getId() %>" name="txtId"/>
+                                        <button type="submit" value="Delete" name="btnSubmit" class="btn btn-danger">Delete</button>
+                                    </form> 
+                                </td>
+                            </tr>
+
+                            <%
+                            }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1">
+                    <a href="AddContact.jsp"><button class="btn btn-primary">Add Contact</button></a>
+                    <br/><br/>
+                    <form action="ContactAction.jsp">
+                        <button type="submit" value="Clear" name="btnSubmit" class="btn btn-danger">Clear</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+                   
+        
+    </body>
+</html>
+
+------>ContactAction.jsp
+
+<%-- 
+    Document   : ContactAction
+    Created on : 26 Oct, 2022, 9:34:39 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="allcontact" class="Beans.MyAllContact" scope="session"/>
+<%@page import="Beans.*" %>
+
+<%
+
+    
+    String submit = request.getParameter("btnSubmit");
+    
+    if(submit.equals("Add")){
+        String name = request.getParameter("txtName");
+        String mobile = request.getParameter("txtMobile");
+        String email = request.getParameter("txtEmail");
+        
+        
+        ContactDetail c = new ContactDetail();
+        c.setName(name);
+        c.setEmail(email);
+        c.setMobile(mobile);
+        
+        allcontact.addContact(c);
+        
+        response.sendRedirect("AllContact.jsp");
+    }
+    
+    if(submit.equals("Clear")){
+        
+        allcontact.clearContact();
+        
+        response.sendRedirect("AllContact.jsp");
+    }
+    
+    if(submit.equals("Delete")){
+        
+        int id = Integer.parseInt(request.getParameter("txtId"));
+        
+        for(ContactDetail c : allcontact.getAllContacts()){
+            if(c.getId() == id){
+                allcontact.removeContact(c);
+                break;
+            }
+        }
+        
+        response.sendRedirect("AllContact.jsp");
+    }
+
+    if(submit.equals("Update")){
+        int id = Integer.parseInt(request.getParameter("txtId"));
+        String name = request.getParameter("txtName");
+        String mobile = request.getParameter("txtMobile");
+        String email = request.getParameter("txtEmail");
+        
+        
+        ContactDetail c = new ContactDetail();
+        c.setId(id);
+        c.setName(name);
+        c.setEmail(email);
+        c.setMobile(mobile);
+        
+        allcontact.updateContact(c);
+        
+        response.sendRedirect("AllContact.jsp");
+    }
+%>
+
+------>EditContat.jsp
+
+<%-- 
+    Document   : EditContact
+    Created on : 28 Oct, 2022, 11:07:20 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="allcontact" class="Beans.MyAllContact" scope="session"/>
+<%@page import="Beans.*" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <%
+            Beans.ContactDetail c = new Beans.ContactDetail();
+            c = allcontact.getOneContact(Integer.parseInt(request.getParameter("txtId")));
+        
+        %>
+        
+        <div class="container-fluid">
+        
+            <div class="row center">
+                <h1 class="title">Edit Contact</h1>
+                
+                <a href="AllContact.jsp"><button class="btn btn-primary">View All Contacts</button></a>
+                
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="ContactAction.jsp" method="post" class="formRow">
+                        <input type="hidden" name="txtId" value="<%= c.getId() %>"/>
+                        <div>
+                        <label for="name" class="form-label">Name : </label>
+                        <input type="text" name="txtName" value="<%= c.getName() %>" id="name" class="form-control" placeholder="Name"/>
+                        </div>
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" value="<%= c.getEmail() %>" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="mobile" class="form-label">Mobile : </label>
+                        <input type="text" name="txtMobile" value="<%= c.getMobile() %>" id="mobile" class="form-control" placeholder="Mobile"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="insert" value="Update" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+                </div>
+                <div class="col-md-3 "></div>
+            </div>
+        </div>
     </body>
 </html>
 
 
--------------------------------------------Temprature.java-----------------------------------------------------
+/////////////////////////////////////////////Q-6////////////////////////////////////////////////////////
+
+------>AddContact.jsp
+
+<%-- 
+    Document   : AddContact
+    Created on : 26 Oct, 2022, 9:31:28 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container-fluid">
+        
+            <div class="row center">
+                <h1 class="title">Add Contact</h1>
+                
+                <a href="AllContact.jsp"><button class="btn btn-primary">View All Contacts</button></a>
+                
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="ContactAction.jsp" method="post" class="formRow">
+                        <div>
+                        <label for="name" class="form-label">Name : </label>
+                        <input type="text" name="txtName" id="name" class="form-control" placeholder="Name"/>
+                        </div>
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="mobile" class="form-label">Mobile : </label>
+                        <input type="text" name="txtMobile" id="mobile" class="form-control" placeholder="Mobile"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="insert" value="Add" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+                </div>
+                <div class="col-md-3 "></div>
+            </div>
+        </div>
+    </body>
+</html>
+
+------>DispContacts.jsp
+
+<%-- 
+    Document   : DispContacts
+    Created on : 26 Oct, 2022, 9:16:36 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <h1 class="title">All Contacts</h1>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <th class="head">ID</th>
+                                <th class="head">Name</th>
+                                <th class="head">Mobile</th>
+                                <th class="head">Email</th>
+                                <th class="head" colspan="2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <sql:setDataSource var="ds" driver="com..jdbc.Driver" url="jdbc:://localhost:3306/mysql" user="root" password=""/>
+                            <sql:query dataSource="${ds}" var="result"> 
+                                select * from contact;
+                            </sql:query>
+
+                            <c:forEach var="row" items="${result.rows}"> 
+                                <tr> 
+                                    <td><c:out value="${row.id}"/></td> 
+                                    <td><c:out value="${row.name}"/></td> 
+                                    <td><c:out value="${row.mobile}"/></td> 
+                                    <td><c:out value="${row.email}"/></td> 
+                                    <td>
+                                        <form action="EditContact.jsp" method="POST">
+                                            <input type="hidden" value="${row.id}" name="txtId"/>
+                                            <button type="submit" value="Edit" name="btnEdit" class="btn btn-warning">Edit</button>
+                                        </form> 
+                                    </td>
+                                    <td>
+                                        <form action="ContactAction.jsp" method="POST">
+                                            <input type="hidden" value="${row.id}" name="txtId"/>
+                                            <button type="submit" value="Delete" name="btnSubmit" class="btn btn-danger">Delete</button>
+                                        </form> 
+                                    </td>
+                                </tr> 
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1">
+                    <a href="AddContact.jsp"><button class="btn btn-primary">Add Contact</button></a>
+                    <br/><br/>
+                    <form action="ContactAction.jsp">
+                        <button type="submit" value="Clear" name="btnSubmit" class="btn btn-danger">Clear</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+------>ContactAction.jsp
+
+<%-- 
+    Document   : ContactAction
+    Created on : 26 Oct, 2022, 9:34:39 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
-import com.convertor.TempConv_Service;
+<c:set var="submit" scope="page" value="${param.btnSubmit}"/>
+    
+<c:if test="${submit.equals('Add')}">
+    <c:set var="name" scope="page" value="${param.txtName}"/>
+    <c:set var="mobile" scope="page" value="${param.txtMobile}"/>
+    <c:set var="email" scope="page" value="${param.txtEmail}"/>
+    
+    <sql:setDataSource var="ds" driver="com..jdbc.Driver" url="jdbc:://localhost:3306/mysql" user="root" password=""/>
+    <sql:update dataSource="${ds}" var="count">
+        insert into contact(name,email,mobile) values('${name}','${email}','${mobile}');
+    </sql:update>
+    <%
+        response.sendRedirect("AllContact.jsp");
+    %>
+</c:if>
+    
+<c:if test="${submit.equals('Clear')}">
+    <sql:setDataSource var="ds" driver="com..jdbc.Driver" url="jdbc:://localhost:3306/mysql" user="root" password=""/>
+    <sql:update dataSource="${ds}" var="count">
+        delete from contact;
+    </sql:update>
+    <%
+        response.sendRedirect("AllContact.jsp");
+    %>
+</c:if>
+
+<c:if test="${submit.equals('Delete')}">
+    <c:set var="id" scope="page" value="${param.txtId}"/>
+    
+    <sql:setDataSource var="ds" driver="com..jdbc.Driver" url="jdbc:://localhost:3306/mysql" user="root" password=""/>
+    <sql:update dataSource="${ds}" var="count">
+        delete from contact where id = ${id};
+    </sql:update>
+    <%
+        response.sendRedirect("DispContacts.jsp");
+    %>
+</c:if>
+        
+<c:if test="${submit.equals('Update')}">
+    <c:set var="id" scope="page" value="${param.txtId}"/>
+    <c:set var="name" scope="page" value="${param.txtName}"/>
+    <c:set var="mobile" scope="page" value="${param.txtMobile}"/>
+    <c:set var="email" scope="page" value="${param.txtEmail}"/>
+    
+    <sql:setDataSource var="ds" driver="com..jdbc.Driver" url="jdbc:://localhost:3306/mysql" user="root" password=""/>
+    <sql:update dataSource="${ds}" var="count">
+        update contact set name = '${name}', email = '${email}',mobile = '${mobile}' where id = ${id};
+    </sql:update>
+    <%
+        response.sendRedirect("AllContact.jsp");
+    %>
+</c:if>
+
+------>EditContact.jsp
+
+<%-- 
+    Document   : EditContact
+    Created on : 28 Oct, 2022, 11:07:20 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <c:set var="id" scope="page" value="${param.txtId}"/>
+        <sql:setDataSource var="ds" driver="com..jdbc.Driver" url="jdbc:://localhost:3306/mysql" user="root" password=""/>
+        <sql:query dataSource="${ds}" var="result"> 
+            select * from contact where id = ${id};
+        </sql:query>
+            
+        <c:forEach var="row" items="${result.rows}"> 
+            <c:set var="name" scope="page" value="${row.name}"/>
+            <c:set var="email" scope="page" value="${row.email}"/>
+            <c:set var="mobile" scope="page" value="${row.mobile}"/>
+        </c:forEach>
+            
+        <div class="container-fluid">
+        
+            <div class="row center">
+                <h1 class="title">Edit Contact</h1>
+                
+                <a href="AllContact.jsp"><button class="btn btn-primary">View All Contacts</button></a>
+                
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="ContactAction.jsp" method="post" class="formRow">
+                        <input type="hidden" name="txtId" value="${id}"/>
+                        <div>
+                        <label for="name" class="form-label">Name : </label>
+                        <input type="text" name="txtName" value="${name}" id="name" class="form-control" placeholder="Name"/>
+                        </div>
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" value="${email}" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="mobile" class="form-label">Mobile : </label>
+                        <input type="text" name="txtMobile" value="${mobile}" id="mobile" class="form-control" placeholder="Mobile"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="insert" value="Update" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+                </div>
+                <div class="col-md-3 "></div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+/////////////////////////////////////////////Q-7 Test ///////////////////////////////////////////////////////////
+
+------>form.java
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Servlets;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.WebServiceRef;
 
+/**
+ *
+ * @author test
+ */
+public class Form extends HttpServlet {
 
-public class Temprature extends HttpServlet {
-
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/a7/TempConv.wsdl")
-    private TempConv_Service service;
-
-   
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            float temp = Float.parseFloat(request.getParameter("txt1"));
-            
-            String btn = request.getParameter("b1");
-            if(btn.equals("Fahrenite"))
-            {
-                out.print("Temprature in Fahrenite : "+celtoferh(temp));
-            }
-            if(btn.equals("celcius"))
-            {
-               out.print("Temprature in Celcius "+ fahtoCel(temp));
-            }
-            
-            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Temprature</title>");            
+            out.println("<title>Servlet Form</title>");            
             out.println("</head>");
             out.println("<body>");
-            //out.println("<h1>Servlet Temprature at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Temperature Conversion</h1>");
+            out.println("<form action='SOAPTest' method='POST'>");
+            out.println("Feranhite : <input type='text' name='txtF'/><br/><br/>");
+            out.println("<input type='submit' name='btnCheck'/><br/><br/>");
+            out.println("Celcius : <input type='text' name='txtC'/><br/><br/>");
+            out.println("<input type='submit' name='btnCheck'/>");
+            out.println("</form>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -1797,29 +2015,136 @@ public class Temprature extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private float celtoferh(float temp) {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        com.convertor.TempConv port = service.getTempConvPort();
-        return port.celtoferh(temp);
+}
+
+------>servlet.java
+
+package Servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.WebServiceRef;
+
+/**
+ *
+ * @author test
+ */
+public class SOAPTest extends HttpServlet {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/mysql_Q7_SOAPService/TemperatureConversionService.wsdl")
+    private TemperatureConversionService_Service service;
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            
+            TemperatureConversionService tcs = service.getTemperatureConversionServicePort();
+            
+            float c = 0;
+            float f = 0;
+            try{
+                c = Float.parseFloat(request.getParameter("txtC"));
+            }
+            catch(Exception e){}
+            try{
+                f = Float.parseFloat(request.getParameter("txtF"));
+            }
+            catch(Exception e){}
+            
+            if(c != 0){
+                f = tcs.degCtoDegF(c);
+            }
+            else{
+                c = tcs.degFtoDegC(f);
+            }
+            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SOAPTest</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SOAPTest at " + request.getContextPath() + "</h1>");
+            out.println("Celcius : "+c+"<br/><br/>");
+            out.println("Feranhite : "+f+"<br/><br/>");
+            out.println("<a href='Form'>Back</a>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
-    private float fahtoCel(float temp) {
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+    private float degCtoDegF(float c) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        com.convertor.TempConv port = service.getTempConvPort();
-        return port.fahtoCel(temp);
+        Servlets.TemperatureConversionService port = service.getTemperatureConversionServicePort();
+        return port.degCtoDegF(c);
+    }
+
+    private float degFtoDegC(float f) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        Servlets.TemperatureConversionService port = service.getTemperatureConversionServicePort();
+        return port.degFtoDegC(f);
     }
 
 }
 
 
+///////////////////////////////////////Q-8//////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Q-8------------------------------------------------------------------------------------------------------------
-
------------------------------------product.java--------------------------------------------------------
+------>contactdetail.java
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -1827,39 +2152,60 @@ Q-8-----------------------------------------------------------------------------
  * and open the template in the editor.
  */
 
-package RESTService;
+package RESTFulServices;
+
+import java.beans.*;
+import java.io.Serializable;
 
 /**
  *
- * @author Utkarsh
+ * @author test
  */
-class Product {
+public class ContactDetail implements Serializable {
     
-       private int id;
+        private int id;
+    
+    private String name;
+
+    private String mobile;
+
+    private String email;
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
     }
-
+ 
     public void setId(int id) {
-        this.id = id;
+        this.id = id ;
     }
-
-    private String prodname;
-
-    public String getProdname() {
-        return prodname;
-    }
-
-    public void setProdname(String prodname) {
-        this.prodname = prodname;
-    }
-
 
 }
 
-
-----------------------------------------------ProductResource.java---------------------------------------------------------
+------>contactResource.java
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -1867,7 +2213,7 @@ class Product {
  * and open the template in the editor.
  */
 
-package RESTService;
+package RESTFulServices;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -1875,10 +2221,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.sql.*;
+import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -1886,98 +2232,89 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.QueryParam;
 
 /**
  * REST Web Service
  *
- * @author Utkarsh
+ * @author test
  */
-@Path("product")
-public class ProductResource {
+@Path("contact")
+public class ContactResource {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of ProductResource
+     * Creates a new instance of ContactResource
      */
-    public ProductResource() {
+    public ContactResource() {
     }
 
     /**
-     * Retrieves representation of an instance of RESTService.ProductResource
+     * Retrieves representation of an instance of RESTFulServices.ContactResource
      * @return an instance of java.lang.String
      */
     @GET
     @Produces("application/json")
-    public ArrayList<Product> getJson() {
-        ArrayList<Product> myProductList = new ArrayList<>();
-        try {
-            //TODO return proper representation object
-            //throw new UnsupportedOperationException();
-            InitialContext ic = new InitialContext();
-            DataSource ds =  (DataSource)ic.lookup("jdbc/mysql");
-            Connection cn = ds.getConnection();
-            Statement st = cn.createStatement();
-            ResultSet rs =  st.executeQuery("select * from product_master");
-            while(rs.next())
-            {
-                Product p = new Product();
-                p.setId(rs.getInt("productid"));
-                p.setProdname(rs.getString("productname"));
-                myProductList.add(p);
-            }
-            
-        } catch (NamingException ex) {
-            Logger.getLogger(ProductResource.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductResource.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return myProductList;
+    public ArrayList<ContactDetail> getJson() {
         
+        ArrayList<ContactDetail> myContact = new ArrayList<>();
+        //String str = "";
+        
+        try{
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("select * from contact");
+            while(rs.next()){
+                ContactDetail c = new ContactDetail();
+                c.setId(rs.getInt("id"));
+                c.setName(rs.getString("name"));
+                c.setMobile(rs.getString("mobile"));
+                c.setEmail(rs.getString("email"));
+                myContact.add(c);
+                //str += c;
+            }
+        }
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return myContact;
     }
 
+    /**
+     * Retrieves representation of an instance of RESTFulServices.ContactResource
+     * @return an instance of java.lang.String
+     */
     @GET
     @Produces("application/json")
     @Path("{id}")
-    public Product getJson(@PathParam("id") int id)
-    {
+    public ContactDetail getJson(@PathParam("id") int id) {
         
-        Product p = null;
-        try {
-            //TODO return proper representation object
-            //throw new UnsupportedOperationException();
-            InitialContext ic = new InitialContext();
-            DataSource ds =  (DataSource)ic.lookup("jdbc/mysql");
-            Connection cn = ds.getConnection();
+        ContactDetail c = null;
+        try{
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
             Statement st = cn.createStatement();
-            ResultSet rs =  st.executeQuery("select * from product_master where productid =" + id);
-            while(rs.next())
-            {
-                p = new Product();
-                p.setId(rs.getInt("productid"));
-                p.setProdname(rs.getString("productname"));                               
+            ResultSet rs = st.executeQuery("select * from contact where id = "+id);
+            while(rs.next()){
+                c = new ContactDetail();
+                c.setId(rs.getInt("id"));
+                c.setName(rs.getString("name"));
+                c.setMobile(rs.getString("mobile"));
+                c.setEmail(rs.getString("email"));
+                
             }
-            
-        } catch (NamingException ex) {
-            Logger.getLogger(ProductResource.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductResource.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return p;
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
     }
-    
-    /**
-     * PUT method for updating or creating an instance of ProductResource
-     * @param content representation for the resource
-     * @return an HTTP response with content of the updated or created resource.
-     */
-    @PUT
-    @Consumes("application/json")
-    public void putJson(String content) {
-    }
-    
     /**
      * POST method for updating or creating an instance of ProductResource
      * @param content representation for the resource
@@ -1986,20 +2323,69 @@ public class ProductResource {
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public String  postJson(Product myproduct) {
+    public String  postJson(ContactDetail c) {
         int no_of_rows_updated =0;
         try {
-            Product varProduct = myproduct;
-            InitialContext ic = new InitialContext();
-            DataSource ds =  (DataSource)ic.lookup("jdbc/mysql");
-            Connection cn = ds.getConnection();
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
             Statement st = cn.createStatement();
-            no_of_rows_updated = st.executeUpdate("insert into product_master(productid, productname) values (" + myproduct.getId() + ",'" + myproduct.getProdname() + "')");
+            no_of_rows_updated = st.executeUpdate("insert into contact(name,mobile,email) values ('" + c.getName()+ "','" + c.getMobile()+ "','" + c.getEmail()+ "')");
             
-        } catch (NamingException ex) {
-            Logger.getLogger(ProductResource.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ProductResource.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String status = "{'status' : false}";
+        if(no_of_rows_updated > 0)
+          status = "{'status' : true}";
+        return status;
+    }
+    /**
+     * DELETE method for updating or creating an instance of ProductResource
+     * @param content representation for the resource
+     * @return an HTTP response with content of the updated or created resource.
+     */
+    @DELETE
+    @Consumes("application/json")
+    @Path("{id}")
+    public String deleteJson(@PathParam("id") int id) {
+        int no_of_rows_updated =0;
+        try{
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            Statement st = cn.createStatement();
+            no_of_rows_updated = st.executeUpdate("delete from contact where id = "+id);
+        }
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String status = "{'status' : false}";
+        if(no_of_rows_updated > 0)
+          status = "{'status' : true}";
+        return status;
+    }
+    /**
+     * PUT method for updating or creating an instance of ContactResource
+     * @param content representation for the resource
+     * @return an HTTP response with content of the updated or created resource.
+     */
+    @PUT
+    @Consumes("application/json")
+    public String putJson(ContactDetail c) {
+        int no_of_rows_updated =0;
+        try{
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull","root","");
+            Statement st = cn.createStatement();
+            no_of_rows_updated = st.executeUpdate("update contact set name = '"+c.getName()+"', email = '"+c.getEmail()+"', mobile = '"+c.getMobile()+"' where id = "+c.getId());
+        }
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactResource.class.getName()).log(Level.SEVERE, null, ex);
         }
         String status = "{'status' : false}";
         if(no_of_rows_updated > 0)
@@ -2008,9 +2394,7 @@ public class ProductResource {
     }
 }
 
-
-
-----------------------------ApplicationConfig.java---------------------------------------------------
+-------->ApplicationConfig.java
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -2018,14 +2402,14 @@ public class ProductResource {
  * and open the template in the editor.
  */
 
-package RESTService;
+package RESTFulServices;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**
  *
- * @author Utkarsh
+ * @author test
  */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
@@ -2044,15 +2428,1306 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(RESTService.ProductResource.class);
+        resources.add(RESTFulServices.ContactResource.class);
     }
     
 }
 
 
 
+////////////////////////////////////////////////////Q-11///////////////////////////////////////
+
+
+------>Action.jsp
+
+<%-- 
+    Document   : Action
+    Created on : 11 Nov, 2022, 2:34:39 PM
+    Author     : test
+--%>
+
+<%@page import="java.sql.*"%>
+<%@page import="Beans.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="mycart" class="Beans.ShoppingCart" scope="session"/>
+
+<%
+   
+        String submit = request.getParameter("btnSubmit");
+
+        if(submit.equals("Login")){
+            Boolean isLogin = false;
+            String email = request.getParameter("txtEmail");
+            String pwd = request.getParameter("txtPwd");
+
+            Class.forName("com..jdbc.Driver");
+            Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("select * from user");
+            while(rs.next()){
+                if(email.equals(rs.getString("email")) && pwd.equals(rs.getString("password"))){
+                    HttpSession mysession = request.getSession();
+                    mysession.setAttribute("email", email);
+                    mysession.setAttribute("uid", rs.getString("uid"));
+                    mysession.setAttribute("name", rs.getString("username"));
+                    mysession.setAttribute("isLogin", "true");
+                    isLogin = true;
+                }
+            }
+            if(isLogin == true){
+                response.sendRedirect("Home.jsp");
+            }
+            else{
+                response.sendRedirect("Login.jsp?inValidLogin='true'");
+            }
+        }
+
+        if(submit.equals("AddToCart")){
+            int qty = Integer.parseInt(request.getParameter("txtQty"));
+            int price = Integer.parseInt(request.getParameter("txtPrice"));
+            int pid = Integer.parseInt(request.getParameter("txtPid"));
+            int amt = price * qty;
+
+            
+            
+            Beans.CartItem c = new Beans.CartItem();
+            c.setItemid(pid);
+            c.setItemqty(qty);
+            c.setAmt(amt);
+            mycart.addItem(c);
+            
+            
+            
+            response.sendRedirect("Home.jsp");
+        }
+        
+        if(submit.equals("Clear")){
+            mycart.clearCart();
+            response.sendRedirect("Cart.jsp");
+        }
+
+        if(submit.equals("Remove")){
+            int itemId = Integer.parseInt(request.getParameter("txtId"));
+            for(Beans.CartItem c : mycart.getAllItems()){
+                if(c.getItemid() == itemId){
+                    mycart.removeItem(c);
+                    break;
+                }
+            }
+            response.sendRedirect("Cart.jsp");
+        }
+        
+        if(submit.equals("Order")){
+            int uid = Integer.parseInt(request.getParameter("txtUid"));
+            for(CartItem c : mycart.getAllItems()){
+                int pid = c.getItemid();
+                int qty = c.getItemqty();
+                int amt = c.getAmt();
+                
+                Class.forName("com..jdbc.Driver");
+                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                Statement st = cn.createStatement();
+                int ans = st.executeUpdate("insert into orders(uid,pid,qty,amt) values("+uid+","+pid+",'"+qty+"','"+amt+"')");
+                
+                if(ans >= 1){
+                    System.out.print("<script>alert('Inserted Sucessfully');</script>");
+                }
+                else{
+                    System.out.print("<script>alert('Error in Insertion');</script>");
+                }
+            }
+            mycart.clearCart();
+            
+            response.sendRedirect("ThankYou.jsp");
+        }
+  
+%>
+
+------>Orders.jsp
+
+<%-- 
+    Document   : Orders
+    Created on : 11 Nov, 2022, 2:03:23 PM
+    Author     : test
+--%>
+
+<%@page import="java.sql.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <% 
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
+            }
+            if(isLogin == true){
+                
+            
+                Class.forName("com..jdbc.Driver");
+                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery("select * from orders where uid = "+mysession.getAttribute("uid"));
+
+            %>
+            <div class="container-fluid">
+            <div class="row">
+                <h1 class="title">All Orders</h1>
+                <h3 class="title">Welcome <%= mysession.getAttribute("name")%></h3>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <td class="head">OID</td>
+                                <td class="head">UID</td>
+                                <td class="head">PID</td>
+                                <td class="head">Ord Qty</td>
+                                <td class="head">Amt</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            while(rs.next()){
+                            %>
+                            <tr>
+                                <td><%= rs.getInt("oid")%></td>
+                                <%
+                                    String user = "",title = "";
+                                    Class.forName("com..jdbc.Driver");
+                                    Connection cn2 = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                                    Statement st2 = cn2.createStatement();
+                                    ResultSet rs2 = st2.executeQuery("select * from user where uid = "+rs.getInt("uid"));
+                                    while(rs2.next()){
+                                        user = rs2.getString("email");
+                                    }
+                                %>
+                                <td><%= user%></td>
+                                <%
+                                    Class.forName("com..jdbc.Driver");
+                                    Connection cn3 = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                                    Statement st3 = cn3.createStatement();
+                                    ResultSet rs3 = st3.executeQuery("select * from product where pid = "+rs.getInt("pid"));
+                                    while(rs3.next()){
+                                        title = rs3.getString("title");
+                                    }
+                                %>
+                                <td><%= title %></td>
+                                <td><%= rs.getString("qty")%></td>
+                                <td><%= rs.getString("amt")%></td>
+                            </tr>
+
+                            <%
+                            }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1">
+                <a href="Home.jsp"><button class="btn btn-primary">Products</button></a><br/><br/>
+                <a href="Cart.jsp"><button class="btn btn-primary">Cart</button></a><br/><br/>
+                <a href="AllOrder.jsp"><button class="btn btn-primary">My Orders</button></a><br/><br/>
+                <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                </div>
+            </div>
+            </div>
+            <%
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+            %>
+        </table>
+    </body>
+</html>
+
+------>cart.jsp
+
+<%-- 
+    Document   : Cart
+    Created on : 11 Nov, 2022, 3:26:43 PM
+    Author     : test
+--%>
+
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Beans.*"%>
+<jsp:useBean id="mycart" class="Beans.ShoppingCart" scope="session"/>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <% 
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
+            }
+            if(isLogin == true){
+                
+            
+//                Class.forName("com..jdbc.Driver");
+//                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+//                Statement st = cn.createStatement();
+//                ResultSet rs = st.executeQuery("select * from product");
+                
+                
+
+            %>
+            <div class="container-fluid">
+                <div class="row">
+                    <h1 class="title">All Products</h1>
+                    <h3 class="title">Welcome <%= mysession.getAttribute("name")%></h3>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <table class="table table-hover table-stripped">
+                            <thead>
+                                <tr>
+                                    <td class="head">ID</td>
+                                    <td class="head">Ord Qty</td>
+                                    <td class="head">Amt</td>
+                                    <td class="head" colspan="2">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <%
+                                int totalAmt = 0;
+                                for(CartItem c : mycart.getAllItems()){
+                                    totalAmt = totalAmt + c.getAmt();
+
+                            %>
+                                <tr>
+                                    <td><%= c.getItemid() %></td>
+                                    <td><%= c.getItemqty() %></td>
+                                    <td><%= c.getAmt() %></td>
+                                    <td>
+                                        <form action="Action.jsp" method="POST">
+                                            <input type="hidden" name="txtId" value="<%= c.getItemid() %>"/>
+                                            <button type="submit" name="btnSubmit" value="Remove" class="btn btn-danger">Remove</button>
+                                        </form> 
+
+                                    </td>
+                                </tr>
+                            <% 
+                                } 
+                            %>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-1">
+                        <form action="Action.jsp" method="POST">
+                            <button type="submit" name="btnSubmit" value="Clear" class="btn btn-danger">Clear</button>
+                        </form> 
+                        <br/><br/>
+                        <form action="Action.jsp" method="POST">
+                            <input type="hidden" name="txtUid" value="<%= session.getAttribute("uid") %>"/>
+                            <input type="hidden" name="txtTotalAmt" value="<%= totalAmt %>"/>
+                            <button type="submit" name="btnSubmit" value="Order" class="btn btn-success">Order</button>
+                        </form>
+                        <br/><br/>
+                        <a href="Home.jsp"><button class="btn btn-primary">Products</button></a><br/><br/>
+                        <a href="Cart.jsp"><button class="btn btn-primary">Cart</button></a><br/><br/>
+                        <a href="AllOrder.jsp"><button class="btn btn-primary">My Orders</button></a><br/><br/>
+                        <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                    </div>
+                </div>
+            </div>
+
+                
+            <%            
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+            %>
+    </body>
+</html>
+
+------>Home.jsp
+
+<%-- 
+    Document   : Home
+    Created on : 11 Nov, 2022, 11:52:51 AM
+    Author     : test
+--%>
+
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <% 
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
+            }
+            if(isLogin == true){
+                
+            
+                Class.forName("com..jdbc.Driver");
+                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery("select * from product");
+
+            %>
+            
+            <div class="container-fluid">
+            <div class="row">
+                <h1 class="title">All Products</h1>
+                <h3 class="title">Welcome <%= mysession.getAttribute("name")%></h3>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <td class="head">PID</td>
+                                <td class="head">CID</td>
+                                <td class="head">Title</td>
+                                <td class="head">Avail Qty</td>
+                                <td class="head">Price</td>
+                                <td class="head" colspan="2">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            while(rs.next()){
+                            %>
+                            <tr>
+                                <td><%= rs.getInt("pid")%></td>
+                                <td><%= rs.getInt("cid")%></td>
+                                <td><%= rs.getString("title")%></td>
+                                <td><%= rs.getString("qty")%></td>
+                                <td><%= rs.getString("price")%></td>
+                                <form action="Action.jsp" method="POST">
+                                    <input type="hidden" value="<%= rs.getInt("pid")%>" name="txtPid"/>
+                                    <input type="hidden" value="<%= rs.getInt("price")%>" name="txtPrice"/>
+                                    <input type="hidden" value="<%= mysession.getAttribute("uid")%>" name="txtUid"/>
+                                <td>
+                                    <input type="number" value="1" name="txtQty" class="form-control" style="width:80px"/>
+                                </td>
+                                <td>
+                                    <button type="submit" value="AddToCart" name="btnSubmit" class="btn btn-success">AddToCart</button>
+                                </td>
+                                </form>
+                            </tr>
+
+                            <%
+                            }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1">
+                <a href="Home.jsp"><button class="btn btn-primary">Products</button></a><br/><br/>
+                <a href="Cart.jsp"><button class="btn btn-primary">Cart</button></a><br/><br/>
+                <a href="AllOrder.jsp"><button class="btn btn-primary">My Orders</button></a><br/><br/>
+                <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                </div>
+            </div>
+            </div>
+            <%
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+            %>
+        </div>
+    </body>
+</html>
+
+------>Login.jsp
+
+<%-- 
+    Document   : Login
+    Created on : 11 Nov, 2022, 10:23:44 PM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+      
+        <div class="container-fluid">
+        
+            <div class="row">
+                <h1 class="title">Login</h1>
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="Action.jsp" method="post" class="formRow">
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="password" class="form-label">Password : </label>
+                        <input type="password" name="txtPwd" id="password" class="form-control" placeholder="Password"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="login" value="Login" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+------>Logout.jsp
+
+<%-- 
+    Document   : Logout
+    Created on : 11 Nov, 2022, 1:11:27 PM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Logout</h1>
+        <%
+            HttpSession mysession = request.getSession();
+            mysession.invalidate();
+            response.sendRedirect("Login.jsp");
+        %>
+    </body>
+</html>
+
+------>ThankYou.jsp
+
+<%-- 
+    Document   : ThankYou
+    Created on : 11 Nov, 2022, 11:31:46 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <%
+            HttpSession mysession = request.getSession();
+        %>
+        <div class="container-fluid">
+            <div class="row">
+                <h1 class="title">Thank You for Order</h1>
+                <h3 class="title">Welcome <%= mysession.getAttribute("name")%></h3>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <a href="Home.jsp"><button class="btn btn-primary">Products</button></a>
+                    <a href="Cart.jsp"><button class="btn btn-primary">Cart</button></a>
+                    <a href="Orders.jsp"><button class="btn btn-primary">My Orders</button></a>
+                    <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </body>
+</html>
+
+------>Beans/CartItem.java
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Beans;
+
+import java.beans.*;
+import java.io.Serializable;
+
+/**
+ *
+ * @author test
+ */
+public class CartItem implements Serializable {
+    
+    private int itemid;
+    private int amt;
+    private int itemqty;
+    
+    public int getItemqty() {
+        return itemqty;
+    }
+    public void setItemqty(int itemqty) {
+        this.itemqty = itemqty;
+    }
+    
+    public int getAmt() {
+        return amt;
+    }
+    public void setAmt(int amt) {
+        this.amt = amt;
+    }
+    
+    public int getItemid() {
+        return itemid;
+    }
+    public void setItemid(int itemid) {
+        this.itemid = itemid;
+    } 
+}
+
+------>Beans/ShoppingCart.java
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Beans;
+
+import java.beans.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author test
+ */
+public class ShoppingCart implements Serializable {
+    private final ArrayList<CartItem> cartItems;
+    
+    public ShoppingCart() {
+        cartItems = new ArrayList();
+    }
+    
+    public void addItem(CartItem item){
+        cartItems.add(item);
+    }
+    
+    public void removeItem(CartItem item){
+        cartItems.remove(item);
+    }
+    
+    public ArrayList<CartItem> getAllItems(){
+        return cartItems;
+    }
+    
+    public void clearCart(){
+        cartItems.clear();
+    }
+    
+}
+
+
+//////////////////////////////////////////Q-12///////////////////////////////////////////
+
+------>Action.jsp
+
+<%-- 
+    Document   : ContactAction
+    Created on : 11 Nov, 2022, 9:34:39 AM
+    Author     : test
+--%>
+
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+
+    
+    String submit = request.getParameter("btnSubmit");
+    
+    if(submit.equals("Login")){
+        Boolean isLogin = false;
+        String email = request.getParameter("txtEmail");
+        String pwd = request.getParameter("txtPwd");
+        
+        Class.forName("com..jdbc.Driver");
+        Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery("select * from user where user_type = 'Admin'");
+        while(rs.next()){
+            if(email.equals(rs.getString("email")) && pwd.equals(rs.getString("password"))){
+                HttpSession mysession = request.getSession();
+                mysession.setAttribute("email", email);
+                mysession.setAttribute("name", rs.getString("username"));
+                mysession.setAttribute("isLogin", "true");
+                isLogin = true;
+            }
+        }
+        if(isLogin == true){
+            response.sendRedirect("Home.jsp");
+        }
+        else{
+            response.sendRedirect("Login.jsp?inValidLogin='true'");
+        }
+    }
+    
+    if(submit.equals("Add")){
+        String title = request.getParameter("txtTitle");
+        String cid = request.getParameter("ddCid");
+        String qty = request.getParameter("txtQty");
+        String price = request.getParameter("txtPrice");
+        
+        Class.forName("com..jdbc.Driver");
+        Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+        Statement st = cn.createStatement();
+        int ans = st.executeUpdate("insert into product(cid,title,qty,price) values("+cid+",'"+title+"','"+qty+"','"+price+"')");
+        if(ans >= 1){
+            System.out.print("<script>alert('Inserted Sucessfully');</script>");
+        }
+        else{
+            System.out.print("<script>alert('Error in Insertion');</script>");
+        }
+        response.sendRedirect("Home.jsp");
+    }
+    
+    if(submit.equals("Delete")){
+        
+        int id = Integer.parseInt(request.getParameter("txtId"));
+        Class.forName("com..jdbc.Driver");
+        Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+        Statement st = cn.createStatement();
+        int ans = st.executeUpdate("delete from product where pid = "+id);
+        if(ans >= 1){
+            System.out.print("<script>alert('Deleted Sucessfully');</script>");
+        }
+        else{
+            System.out.print("<script>alert('Error in Deletion');</script>");
+        }
+        response.sendRedirect("Home.jsp");
+    }
+
+%>
+
+------>Add.jsp
+
+<%-- 
+    Document   : Add
+    Created on : 11 Nov, 2022, 12:05:03 PM
+    Author     : test
+--%>
+
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <%
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
+            }
+            if(isLogin == true){
+        %>
+        <div class="container-fluid">
+        
+            <div class="row">
+                <h1 class="title">Add Product</h1>
+                
+                <a href="Home.jsp"><button class="btn btn-primary">View All Products</button></a>
+                <br/><br/>
+                <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="Action.jsp" method="post" class="formRow">
+                        <div>
+                        <label for="cat" class="form-label">Category : </label>
+                        <select name="ddCid" class="form-control" id="cat">
+                            <%
+                                Class.forName("com..jdbc.Driver");
+                                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                                Statement st = cn.createStatement();
+                                ResultSet rs = st.executeQuery("select * from category");
+
+                                while(rs.next()){
+                                %>
+                                    <option value="<%= rs.getString("cid")%>" class="form-control"><%= rs.getString("name")%></option>
+                                <%        
+                                }
+                            %>
+                        </select>
+                        </div>
+                        <div>
+                        <label for="title" class="form-label">Title : </label>
+                        <input type="text" name="txtTitle" id="title" class="form-control" placeholder="Title"/>
+                        </div>
+                        <div>
+                        <label for="qty" class="form-label">Qty : </label>
+                        <input type="text" name="txtQty" id="qty" class="form-control" placeholder="Qty"/>
+                        </div>
+                        <div>
+                        <label for="price" class="form-label">Price : </label>
+                        <input type="text" name="txtPrice" id="price" class="form-control" placeholder="Price"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="insert" value="Add" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+                </div>
+                <div class="col-md-3 "></div>
+            </div>
+        </div>
+        <%
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+        %>
+    </body>
+</html>
+
+------>Orders.jsp
+
+<%-- 
+    Document   : Orders
+    Created on : 11 Nov, 2022, 2:03:23 PM
+    Author     : test
+--%>
+
+<%@page import="java.sql.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <% 
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
+            }
+            if(isLogin == true){
+                
+            
+                Class.forName("com..jdbc.Driver");
+                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery("select * from orders");
+
+            %>
+            <div class="container-fluid">
+            <div class="row">
+                <h1 class="title">All Orders</h1>
+                <h3 class="title">Welcome <%= mysession.getAttribute("name")%></h3>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <td class="head">OID</td>
+                                <td class="head">UID</td>
+                                <td class="head">PID</td>
+                                <td class="head">Ord Qty</td>
+                                <td class="head">Amt</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            while(rs.next()){
+                            %>
+                            <tr>
+                                <td><%= rs.getInt("oid")%></td>
+                                <%
+                                    String user = "",title = "";
+                                    Class.forName("com..jdbc.Driver");
+                                    Connection cn2 = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                                    Statement st2 = cn2.createStatement();
+                                    ResultSet rs2 = st2.executeQuery("select * from user where uid = "+rs.getInt("uid"));
+                                    while(rs2.next()){
+                                        user = rs2.getString("email");
+                                    }
+                                %>
+                                <td><%= user%></td>
+                                <%
+                                    Class.forName("com..jdbc.Driver");
+                                    Connection cn3 = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                                    Statement st3 = cn3.createStatement();
+                                    ResultSet rs3 = st3.executeQuery("select * from product where pid = "+rs.getInt("pid"));
+                                    while(rs3.next()){
+                                        title = rs3.getString("title");
+                                    }
+                                %>
+                                <td><%= title %></td>
+                                <td><%= rs.getString("qty")%></td>
+                                <td><%= rs.getString("amt")%></td>
+                            </tr>
+
+                            <%
+                            }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1">
+                <a href="Home.jsp"><button class="btn btn-primary">All Products</button></a><br/><br/>
+                <a href="AllOrder.jsp"><button class="btn btn-primary">All Orders</button></a><br/><br/>
+                <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                </div>
+            </div>
+            </div>
+            <%
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+            %>
+        </table>
+    </body>
+</html>
+
+------>Home.jsp
+
+<%-- 
+    Document   : Home
+    Created on : 11 Nov, 2022, 11:52:51 AM
+    Author     : test
+--%>
+
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <% 
+            Boolean isLogin = false;
+            HttpSession mysession = request.getSession();
+            if(mysession.getAttribute("isLogin") == "true"){
+                isLogin = true;
+            }
+            if(isLogin == true){
+                
+            
+                Class.forName("com..jdbc.Driver");
+                Connection cn = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery("select * from product");
+
+            %>
+           <div class="container-fluid">
+            <div class="row">
+                <h1 class="title">All Products</h1>
+                <h3 class="title">Welcome <%= mysession.getAttribute("name")%></h3>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <table class="table table-hover table-stripped">
+                        <thead>
+                            <tr>
+                                <td class="head">PID</td>
+                                <td class="head">CID</td>
+                                <td class="head">Title</td>
+                                <td class="head">Avail Qty</td>
+                                <td class="head">Price</td>
+                                <td class="head" colspan="2">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            while(rs.next()){
+                            %>
+                            <tr>
+                                <td><%= rs.getInt("pid")%></td>
+                                <%
+                                    String cat = "";
+                                    Class.forName("com..jdbc.Driver");
+                                    Connection cn2 = DriverManager.getConnection("jdbc:://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull", "root", "");
+                                    Statement st2 = cn2.createStatement();
+                                    ResultSet rs2 = st2.executeQuery("select * from category where cid = "+rs.getInt("cid"));
+                                    while(rs2.next()){
+                                        cat = rs2.getString("name");
+                                    }
+                                %>
+                                <td><%= cat%></td>
+                                <td><%= rs.getString("title")%></td>
+                                <td><%= rs.getString("qty")%></td>
+                                <td><%= rs.getString("price")%></td>
+                                <td>
+                                    <form action="Action.jsp" method="POST">
+                                        <input type="hidden" value="<%= rs.getInt("pid")%>" name="txtId"/>
+                                        <button type="submit" value="Delete" name="btnSubmit" class="btn btn-danger">Delete</button>
+                                    </form> 
+                                </td>
+                            </tr>
+
+                            <%
+                            }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-1">
+                <a href="Home.jsp"><button class="btn btn-primary">Products</button></a><br/><br/>
+                <a href="Add.jsp"><button class="btn btn-primary">Add Product</button></a><br/><br/>
+                <a href="AllOrder.jsp"><button class="btn btn-primary">All Orders</button></a><br/><br/>
+                <a href="Logout.jsp"><button class="btn btn-danger">Logout</button></a>
+                </div>
+            </div>
+           </div>
+            <%
+            }
+            else{
+                System.out.print("<script>alert('Please Login First...');</script>");
+                response.sendRedirect("Login.jsp");
+            }
+            %>
+        </table>
+    </body>
+</html>
+
+------>Login.jsp
+
+<%-- 
+    Document   : Login
+    Created on : 11 Nov, 2022, 10:23:44 AM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container-fluid">
+        
+            <div class="row">
+                <h1 class="title">Login</h1>
+                <div class="col-md-3"></div>
+                <div class="col-md-6 ">
+                    <form action="Action.jsp" method="post" class="formRow">
+                        <div>
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" name="txtEmail" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                        <div>
+                        <label for="password" class="form-label">Password : </label>
+                        <input type="password" name="txtPwd" id="password" class="form-control" placeholder="Password"/>
+                        </div>
+                        <div style="text-align:center;margin:10px">
+
+                        <input type="submit" name="btnSubmit" id="login" value="Login" class="btn btn-success btn-small" style="margin:0"/>
+                        
+                    </form>  
+
+                </div>
+                <div class="col-md-2">
+
+
+                </div>
+            </div>
+        </div> 
+    </body>
+</html>
+
+------>Logout.jsp
+
+<%-- 
+    Document   : Logout
+    Created on : 11 Nov, 2022, 1:11:27 PM
+    Author     : test
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Logout</h1>
+        <%
+            HttpSession mysession = request.getSession();
+            mysession.invalidate();
+            response.sendRedirect("Login.jsp");
+        %>
+    </body>
+</html>
 
 
 
+///////////////////////////////////Q-13//////////////////////////////////////////
 
+------>Beans/CartItem.java
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Beans;
+
+import java.beans.*;
+import java.io.Serializable;
+
+/**
+ *
+ * @author test
+ */
+public class CartItem implements Serializable {
+    
+    private int itemid;
+    private int amt;
+    private int itemqty;
+    
+    public int getItemqty() {
+        return itemqty;
+    }
+    public void setItemqty(int itemqty) {
+        this.itemqty = itemqty;
+    }
+    
+    public int getAmt() {
+        return amt;
+    }
+    public void setAmt(int amt) {
+        this.amt = amt;
+    }
+    
+    public int getItemid() {
+        return itemid;
+    }
+    public void setItemid(int itemid) {
+        this.itemid = itemid;
+    }
+}
+
+------>ejb/InterestCalcSessionBean.java
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package ejb;
+
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author test
+ */
+@Stateless
+public class InterestCalcSessionBean implements InterestCalcSessionBeanLocal {
+
+    @Override
+    public float SimpleInterest(int p, float r, int n) {
+        return (p * r * n)/100;
+    }
+
+    @Override
+    public float CompoundInterest(int p, float r, int n) {
+        float x =1 + r/100;
+        return (float) (p * (Math.pow(x,n)) - p);
+    }
+    
+}
+
+------>ejb/InterestCalcSessionBeanLocal.java
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package ejb;
+
+import javax.ejb.Local;
+
+/**
+ *
+ * @author test
+ */
+@Local
+public interface InterestCalcSessionBeanLocal {
+
+    float SimpleInterest(int p, float r, int n);
+
+    float CompoundInterest(int p, float r, int n);
+    
+}
+
+------>web/InterestCalcTest.java
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package web;
+
+import ejb.InterestCalcSessionBeanLocal;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author test
+ */
+public class InterestCalcTest extends HttpServlet {
+    @EJB
+    private InterestCalcSessionBeanLocal interestCalcSessionBean;
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet InterestCalcTest</title>");     
+            out.println("\n" +
+"        <link rel=\"stylesheet\" href=\"./css/style.css\"/>\n" +
+"        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" />");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<div class=\"container-fluid\">\n" +
+"            <div class=\"row\">");
+            out.println("\n" +
+"        <center><h1 class='title text-primary'>Session Beans Examples </h1></center>\n" +
+"        <a href=\"InterestCalcTest\"><button class=\"btn btn-primary\">Interest Calc Test (Stateless)</button></a>\n" +
+"        <br/><br/>");
+            out.println("\n" +
+"        <center><h1 class='title text-primary'>Interest Calc </h1></center>\n");
+            out.println("<div class=\"col-md-1\"></div>\n" +
+"                <div class=\"col-md-10\">");
+            out.println("<center><br/><h3>Principle Amt : 1000</h3>");
+            out.println("<h3>Rate Of Interest : 8.5</h3>");
+            out.println("<h3>No. Of Year : 2</h3><hr/>");
+            out.println("<h2>Simple Interest : "+interestCalcSessionBean.SimpleInterest(1000, Float.parseFloat("8.5"), 2)+"</h2>");
+            out.println("<h2>Compound Interest : "+interestCalcSessionBean.CompoundInterest(1000, Float.parseFloat("8.5"), 2)+"</h2>");
+            out.println("</center></div>\n" +
+"                <div class=\"col-md-1\"></div>");
+            out.println("</div></div>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+}
